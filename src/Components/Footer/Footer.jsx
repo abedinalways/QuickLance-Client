@@ -10,21 +10,21 @@ const Footer = () => {
   return (
     <footer className=" border-t-1 border-blue-300 text-black h-35">
       <div className="flex items-center justify-center py-4 mb-2">
-        <h1 className="font-[sora] font-bold text-sm flex items-center-safe text-blue-900">
-          <span className="space-x-2">
+        <h1 className="font-[sora] font-bold text-sm flex items-center-safe text-blue-900 dark:text-white">
+          <span className="space-x-4">
             Copyright © {new Date().getFullYear()} - All right reserved By
           </span>
           <img src="https://i.ibb.co/216yjMbc/freelance.png" alt="" />
-          <span className="text-black">Quick</span>
-          <span className="text-black">Lance</span>
+          <span className="text-orange-600">Quick</span>
+          <span className="text-blue-600">Lance</span>
         </h1>
       </div>
-      <nav className="grid grid-flow-col gap-4 md:gap-6 text-black text-sm md:text-lg font-[sora]">
-        <div className="flex gap-2 justify-center items-center">
+      <nav className="flex justify-center md:gap-4 text-black text-xs md:text-lg font-[sora]">
+        <div className="flex gap-2 justify-center items-center dark:text-white">
           <NavLink
             to="/"
             className={({ isActive }) =>
-              isActive ? ' text-blue-800 font-bold underline' : ''
+              isActive ? ' text-blue-800 font-bold underline dark:text-orange-600' : ''
             }
           >
             {' '}
@@ -40,7 +40,7 @@ const Footer = () => {
           <NavLink
             to="/browseTask"
             className={({ isActive }) =>
-              isActive ? 'text-purple-900 font-bold underline' : ''
+              isActive ? 'text-blue-800 font-bold underline dark:text-orange-600' : ''
             }
           >
             {' '}
@@ -56,11 +56,11 @@ const Footer = () => {
           <NavLink
             to="/postedTasks"
             className={({ isActive }) =>
-              isActive ? 'text-purple-900  font-bold underline' : ''
+              isActive ? 'text-blue-800  font-bold underline dark:text-orange-600' : ''
             }
           >
             {' '}
-            <ul className="menu menu-horizontal">
+            <ul className="menu menu-horizontal hidden md:flex">
               <li className="px-4 list-none">
                 <span>
                   <BiTask />

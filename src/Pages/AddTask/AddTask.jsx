@@ -30,13 +30,13 @@ const AddTask = () => {
     });
   }
   return (
-    <div className=" bg-gray-100">
-      <h2 className="text-2xl font-bold mb-4 mt-2 text-center font-[Suse]">
+    <div className=" bg-gray-100 ">
+      <h2 className="text-4xl font-bold mb-2 py-4 text-center font-[Suse] dark:text-blue-600">
         Post a Task
       </h2>
       <form
         onSubmit={handleAddTask}
-        className="md:max-w-md max-w-sm mx-auto bg-white p-6 rounded-xl shadow-lg space-y-2 animate-fade-in font-[raleway]"
+        className="md:max-w-md max-w-sm mx-auto bg-white p-6 rounded-xl shadow-lg space-y-2 animate-fade-in font-[raleway] dark:text-blue-800"
       >
         <div className="flex flex-col gap-2">
           <label className="label font-bold">Task</label>
@@ -53,7 +53,7 @@ const AddTask = () => {
           <select
             name="category"
             required
-            className="max-w-md border p-2 rounded text-gray-700 outline-blue-500"
+            className="max-w-md border p-2 rounded text-blue-800 outline-blue-500"
           >
             <option value="">Select Category</option>
             <option value="Development">Web Development</option>
