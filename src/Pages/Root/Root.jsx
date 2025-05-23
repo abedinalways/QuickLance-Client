@@ -7,9 +7,9 @@ import ThemeToggle from '../../Components/ThemeToggle/ThemeToggle';
 const Root = () => {
   return (
     <>
-      <div className="flex ">
+      <div className="flex">
         <Navbar />
-        
+        <ThemeToggle/>
       </div>
       <Outlet />
       <Footer />

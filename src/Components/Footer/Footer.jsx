@@ -8,7 +8,7 @@ import { BiTask } from 'react-icons/bi';
 
 const Footer = () => {
   return (
-    <footer className=" bg-gray-200 text-black h-35">
+    <footer className=" border-t-amber-200 text-black h-35">
       <div className="flex items-center justify-center py-4 mb-2">
         <h1 className="font-[sora] font-bold text-sm flex items-center-safe text-blue-900">
           <span className="space-x-2">
@@ -72,7 +72,7 @@ const Footer = () => {
         </div>
       </nav>
 
-      <div className="flex justify-center items-center gap-4 bg-purple-100 mt-3">
+      <div className="flex justify-center items-center gap-4">
         <NavLink to="https://web.facebook.com/Abedin.always" target="_blank">
           <FaFacebook className="text-2xl text-blue-500"></FaFacebook>
         </NavLink>
