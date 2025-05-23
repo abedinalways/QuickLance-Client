@@ -23,10 +23,10 @@ const Navbar = () => {
 
   const nav = (
     <>
-      <NavLink to="/" className={({ isActive }) =>isActive ? ' text-purple-900 font-bold underline' : ''}> <ul className='menu menu-horizontal px-1'><li className="px-4 list-none"><span><FaHome />Home</span></li></ul></NavLink>
-      <NavLink to="/addTask" className={({ isActive }) =>isActive ? 'text-purple-900 font-bold underline' : ''}> <ul className='menu menu-horizontal'><li className="px-4 list-none"><span> <MdAddTask />Add-Task</span></li></ul></NavLink>
-      <NavLink to="/browseTask" className={({ isActive }) =>isActive ? 'text-purple-900  font-bold underline' : ''}> <ul className='menu menu-horizontal'><li className="px-4 list-none"><span><GoTasklist />Browse-Tasks</span></li></ul></NavLink>
-      <NavLink to="/postedTasks" className={({ isActive }) =>isActive ? 'text-purple-900  font-bold underline' : ''}> <ul className='menu menu-horizontal'><li className="px-4 list-none"><span><TbSubtask />Posted-Tasks</span></li></ul></NavLink>
+      <NavLink to="/" className={({ isActive }) =>isActive ? ' text-blue-900 font-bold text-2xl underline' : ''}> <ul className='menu menu-horizontal px-1'><li className="px-4 list-none"><span><FaHome />Home</span></li></ul></NavLink>
+      <NavLink to="/addTask" className={({ isActive }) =>isActive ? 'text-blue-900 font-bold underline' : ''}> <ul className='menu menu-horizontal'><li className="px-4 list-none"><span> <MdAddTask />Add-Task</span></li></ul></NavLink>
+      <NavLink to="/browseTask" className={({ isActive }) =>isActive ? 'text-blue-900  font-bold underline' : ''}> <ul className='menu menu-horizontal'><li className="px-4 list-none"><span><GoTasklist />Browse-Tasks</span></li></ul></NavLink>
+      <NavLink to="/postedTasks" className={({ isActive }) =>isActive ? 'text-blue-900  font-bold underline' : ''}> <ul className='menu menu-horizontal'><li className="px-4 list-none"><span><TbSubtask />Posted-Tasks</span></li></ul></NavLink>
      
     </>
   );
@@ -36,21 +36,21 @@ const Navbar = () => {
     <div className='flex gap-2'>
       {user ? <>
         
-        <NavLink onClick={handleSignOut} to="/login" className='btn bg-white text-purple-600 font-bold font-[sora] border-1 border-purple-300 rounded-sm text-md hover:bg-purple-600 hover:text-white px-6 hidden'>Logout</NavLink>
-      </> : <NavLink to="/login" className='btn bg-white text-purple-600 font-bold font-[sora] border-1 border-purple-300 rounded-sm text-md hover:bg-purple-600 hover:text-white px-6'>Login</NavLink>}
+        <NavLink onClick={handleSignOut} to="/login" className='btn bg-white text-blue-600 font-bold font-[sora] border-1 border-blue-300 rounded-sm text-md hover:bg-blue-600 hover:text-white px-6 hidden'>Logout</NavLink>
+      </> : <NavLink to="/login" className='btn bg-white text-blue-600 font-bold font-[sora] border-1 border-blue-300 rounded-sm text-md hover:bg-blue-600 hover:text-white px-6'>Login</NavLink>}
      
      {user? <> <div className="dropdown dropdown-hover">
   <div tabIndex={0}><button className='btn btn-circle w-10'><img src={user?.photoURL} className='w-8 h-8 rounded-full mt-1' /></button></div>
   <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-30 mr-40 shadow-sm">
-    <li className='text-purple-800 font-bold font-[sora] text-[12px] mt-3 ml-4 hidden md:flex'>{user?.displayName}</li>
-    <li><NavLink onClick={handleSignOut} to="/login" className='btn bg-white text-purple-600 font-bold font-[sora] border-1 border-purple-300 rounded-sm text-md hover:bg-purple-600 hover:text-white px-6'>Logout</NavLink></li>
+    <li className='text-blue-800 font-bold font-[sora] text-[12px] mt-3 ml-4 hidden md:flex'>{user?.displayName}</li>
+    <li><NavLink onClick={handleSignOut} to="/login" className='btn bg-white text-blue-600 font-bold font-[sora] border-1 border-blue-300 rounded-sm text-md hover:bg-blue-600 hover:text-white px-6'>Logout</NavLink></li>
   </ul>
-</div> </>  : <NavLink to="/register" className='btn bg-white text-purple-600 font-bold font-[sora] border-1 border-purple-300 rounded-sm text-md hover:bg-purple-600 hover:text-white px-6'>SingUp</NavLink> } 
+</div> </>  : <NavLink to="/register" className='btn bg-white text-blue-600 font-bold font-[sora] border-1 border-blue-300 rounded-sm text-md hover:bg-blue-600 hover:text-white px-6'>SingUp</NavLink> } 
     </div>
   );
 
   return (
-    <div className="navbar sticky top-0 bg-white z-100">
+    <div className="navbar sticky top-0 bg-yellow-50 z-100">
       <div className="navbar-start flex items-center mx-10">
         <div className="dropdown md:hidden">
           <div className="dropdown dropdown-hover">
@@ -65,14 +65,14 @@ const Navbar = () => {
             </ul>
           </div>
         </div>
-        <h1 className="font-[sora] font-extrabold text-2xl flex items-center-safe">
+        <h1 className="font-[boldonse] font-bold md:text-xl text-lg flex items-center-safe">
           <img src={logo} alt="" />
-          <span className="">Quick</span>
-          <span className="">Lance</span>
+          <span className="text-blue-600">Quick</span>
+          <span className="text-lime-600">Lance</span>
         </h1>
       </div>
       <div className="navbar-center justify-center items-center gap-4 ">
-        <div className="md:flex hidden text-xl">{nav}</div>
+        <div className="md:flex hidden text-2xl font-bold text-amber-400 font-[sora]">{nav}</div>
         <div className="md:hidden flex ml-6">{navEnd}</div>
       </div>
       <div className="navbar-end mx-20 md:flex hidden">{navEnd}</div>

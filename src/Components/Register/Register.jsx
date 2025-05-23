@@ -87,11 +87,11 @@ const Register = () => {
       <div className="flex flex-col justify-center items-center mt-6 mx-auto relative bg-base-200">
         <form
           onSubmit={handleRegister}
-          className="fieldset bg-base-200 shadow-xl border-purple-200 rounded-box w-xs border p-4 mx-auto text-xs"
+          className="fieldset bg-base-200 shadow-xl border-blue-200 rounded-box w-xs border p-4 mx-auto text-xs"
         >
           <div className="p-2 flex flex-col justify-center items-center">
-            <BiUser className="h-8 w-8 text-purple-600 bg-white border-2 rounded-full" />
-            <legend className="fieldset-legend text-2xl font-bold font-[sora] text-purple-600">
+            <BiUser className="h-8 w-8 text-blue-600 bg-white border-2 rounded-full" />
+            <legend className="fieldset-legend text-2xl font-bold font-[sora] text-blue-600">
               Create Account
             </legend>
           </div>
@@ -132,18 +132,18 @@ const Register = () => {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute inset-y-0 right-3 flex items-center px-2 text-purple-800"
+              className="absolute inset-y-0 right-3 flex items-center px-2 text-blue-800"
             >
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </button>
           </div>
-          <button className="btn  bg-white text-purple-600 font-bold font-[sora] border-1 border-purple-300 rounded-md text-xl hover:bg-purple-600 hover:text-white mt-2 mb-2">
+          <button className="btn  bg-white text-blue-600 font-bold font-[sora] border-1 border-blue-300 rounded-md text-xl hover:bg-blue-600 hover:text-white mt-2 mb-2">
             Signup
           </button>
           {passwordError && (
             <p className="text-red-500 text-xs italic">{passwordError}</p>
           )}
-          <label className="label mt-1 font-bold text-purple-500 font-[Poppins]">
+          <label className="label mt-1 font-bold text-blue-500 font-[Poppins]">
             <input type="checkbox" className="checkbox" name="terms" required />
             Accept Our Terms & Conditions
           </label>

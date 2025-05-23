@@ -9,7 +9,7 @@ const Root = () => {
     <>
       <div className="flex ">
         <Navbar />
-        <ThemeToggle />
+        
       </div>
       <Outlet />
       <Footer />

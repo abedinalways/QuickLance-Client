@@ -59,11 +59,11 @@ const Login = () => {
       <Toaster />
       <form
         onSubmit={handleLogin}
-        className="fieldset bg-base-200 shadow-xl border-purple-200 rounded-box w-xs border p-4 mx-auto"
+        className="fieldset bg-base-200 shadow-xl border-blue-200 rounded-box w-xs border p-4 mx-auto"
       >
         <div className="p-2 flex flex-col justify-center items-center">
-          <BiUser className="h-8 w-8 text-purple-600 bg-white border-2 rounded-full" />
-          <legend className="fieldset-legend text-2xl font-bold font-[sora] text-purple-600">
+          <BiUser className="h-8 w-8 text-blue-600 bg-white border-2 rounded-full" />
+          <legend className="fieldset-legend text-2xl font-bold font-[sora] text-blue-600">
             Welcome Back!
           </legend>
         </div>
@@ -85,17 +85,17 @@ const Login = () => {
         />
         <div
           onClick={handleForgotPassword}
-          className="text-purple-600 underline font-bold cursor-pointer"
+          className="text-blue-600 underline font-bold cursor-pointer"
         >
           Forgot password?
         </div>
-        <button className="btn  bg-white text-purple-600 font-bold font-[sora] border-1 border-purple-300 rounded-md text-xl hover:bg-purple-600 hover:text-white mt-2 mb-2">
+        <button className="btn  bg-white text-blue-600 font-bold font-[sora] border-1 border-blue-300 rounded-md text-xl hover:bg-blue-600 hover:text-white mt-2 mb-2">
           Login
         </button>
-        <div className="divider text-purple-600">OR</div>
+        <div className="divider text-blue-600">OR</div>
         <button
           onClick={handleGoogleSignIn}
-          className="btn border border-purple-400 flex items-center text-purple-600 hover:text-white hover:bg-purple-600"
+          className="btn border border-blue-400 flex items-center text-blue-600 hover:text-white hover:bg-blue-600"
         >
           <FcGoogle className="mr-2" size="24px" /> Sign in with Google
         </button>
@@ -103,7 +103,7 @@ const Login = () => {
           Don't have an account? Please{' '}
           <Link
             to="/register"
-            className="font-[Poppins] font-bold text-purple-600 underline"
+            className="font-[Poppins] font-bold text-blue-600 underline"
           >
             Sign up
           </Link>

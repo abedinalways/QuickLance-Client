@@ -12,12 +12,12 @@ const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-        <ThemeProvider>
     <AuthProvider>
       <QueryClientProvider client={queryClient}>
+        <ThemeProvider>
           <RouterProvider router={router}></RouterProvider>
+        </ThemeProvider>
       </QueryClientProvider>
     </AuthProvider>
-        </ThemeProvider>
   </StrictMode>
 );

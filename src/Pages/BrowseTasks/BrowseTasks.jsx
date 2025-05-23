@@ -6,8 +6,9 @@ const BrowseTasks = () => {
   console.log(data);
   return (
     <div className="overflow-x-auto mt-4 bg-gray-100">
-      <table className="table w-40 md:w-220 bg-white mx-auto mt-6">
-        <thead className="text-sm md:text-xl font-bold text-lime-900 font-[Mulish] ">
+      <h1 className='text-2xl font-bold font-[Suse] text-center m-3 text-blue-800'>All Tasks</h1>
+      <table className="table w-40 md:w-220 bg-yellow-50 mx-auto mt-6 mb-4 border-amber-200">
+        <thead className="text-sm md:text-xl font-bold text-blue-800 font-[Mulish] ">
           <tr>
             <th>Task</th>
             <th>Category</th>
@@ -18,7 +19,7 @@ const BrowseTasks = () => {
         {data.map(taskData => (
           <tbody
             key={taskData._id}
-            className="text-xs md:text-[15px] font-[sora]"
+            className="text-xs md:text-[15px] font-[Suse] text-lime-800 font-bold"
           >
             <tr className="">
               <td className="">
@@ -32,7 +33,7 @@ const BrowseTasks = () => {
               </td>
               <th className="">
                 <Link to={`/allTasks/${taskData._id}`}>
-                  <button className="btn btn-ghost btn-sm text-yellow-600">
+                  <button className="btn btn-ghost btn-sm text-green-800">
                     Details
                   </button>
                 </Link>

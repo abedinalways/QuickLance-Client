@@ -107,13 +107,13 @@ const TaskDetails = () => {
       </motion.div>
 
       <motion.div
-        className="md:max-w-xl max-w-md mx-auto p-8 bg-white rounded-2xl shadow-xl border border-lime-200"
+        className="md:max-w-xl max-w-md mx-auto p-8 bg-white rounded-2xl border-2 border-lime-200 shadow-2xl"
         variants={cardVariants}
         initial="hidden"
         animate="visible"
       >
         <motion.h1
-          className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-lime-600 to-emerald-600 mb-6"
+          className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-lime-600 to-emerald-600 mb-6 font-[Suse]"
           variants={textVariants}
           custom={0}
         >
