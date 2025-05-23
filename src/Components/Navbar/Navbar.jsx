@@ -1,0 +1,83 @@
+import React, {use} from 'react';
+import { FaHome } from 'react-icons/fa';
+import { IoMdArrowDropdown } from 'react-icons/io';
+import { GoTasklist } from 'react-icons/go';
+import { MdAddTask } from 'react-icons/md';
+import { TbSubtask } from 'react-icons/tb';
+import { NavLink } from 'react-router';
+import logo from '../../assets/freelance (2).png'
+import toast from 'react-hot-toast';
+import { AuthContext } from '../../Context/AuthContext';
+
+
+const Navbar = () => {
+  const { user, signOutUser } = use(AuthContext);
+  
+  const handleSignOut = () => {
+    signOutUser()
+      .then(() => {
+        toast.success('Log Out Successfully');
+      })
+      .catch(error => console.log(error));
+  };
+
+  const nav = (
+    <>
+      <NavLink to="/" className={({ isActive }) =>isActive ? ' text-purple-900 font-bold underline' : ''}> <ul className='menu menu-horizontal px-1'><li className="px-4 list-none"><span><FaHome />Home</span></li></ul></NavLink>
+      <NavLink to="/addTask" className={({ isActive }) =>isActive ? 'text-purple-900 font-bold underline' : ''}> <ul className='menu menu-horizontal'><li className="px-4 list-none"><span> <MdAddTask />Add-Task</span></li></ul></NavLink>
+      <NavLink to="/browseTask" className={({ isActive }) =>isActive ? 'text-purple-900  font-bold underline' : ''}> <ul className='menu menu-horizontal'><li className="px-4 list-none"><span><GoTasklist />Browse-Tasks</span></li></ul></NavLink>
+      <NavLink to="/postedTasks" className={({ isActive }) =>isActive ? 'text-purple-900  font-bold underline' : ''}> <ul className='menu menu-horizontal'><li className="px-4 list-none"><span><TbSubtask />Posted-Tasks</span></li></ul></NavLink>
+     
+    </>
+  );
+  
+
+  const navEnd = (
+    <div className='flex gap-2'>
+      {user ? <>
+        
+        <NavLink onClick={handleSignOut} to="/login" className='btn bg-white text-purple-600 font-bold font-[sora] border-1 border-purple-300 rounded-sm text-md hover:bg-purple-600 hover:text-white px-6 hidden'>Logout</NavLink>
+      </> : <NavLink to="/login" className='btn bg-white text-purple-600 font-bold font-[sora] border-1 border-purple-300 rounded-sm text-md hover:bg-purple-600 hover:text-white px-6'>Login</NavLink>}
+     
+     {user? <> <div className="dropdown dropdown-hover">
+  <div tabIndex={0}><button className='btn btn-circle w-10'><img src={user?.photoURL} className='w-8 h-8 rounded-full mt-1' /></button></div>
+  <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-30 mr-40 shadow-sm">
+    <li className='text-purple-800 font-bold font-[sora] text-[12px] mt-3 ml-4 hidden md:flex'>{user?.displayName}</li>
+    <li><NavLink onClick={handleSignOut} to="/login" className='btn bg-white text-purple-600 font-bold font-[sora] border-1 border-purple-300 rounded-sm text-md hover:bg-purple-600 hover:text-white px-6'>Logout</NavLink></li>
+  </ul>
+</div> </>  : <NavLink to="/register" className='btn bg-white text-purple-600 font-bold font-[sora] border-1 border-purple-300 rounded-sm text-md hover:bg-purple-600 hover:text-white px-6'>SingUp</NavLink> } 
+    </div>
+  );
+
+  return (
+    <div className="navbar sticky top-0 bg-white z-100">
+      <div className="navbar-start flex items-center mx-10">
+        <div className="dropdown md:hidden">
+          <div className="dropdown dropdown-hover">
+            <div tabIndex={0} role="button" className="btn m-1">
+              <IoMdArrowDropdown />
+            </div>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+            >
+              {nav}
+            </ul>
+          </div>
+        </div>
+        <h1 className="font-[sora] font-extrabold text-2xl flex items-center-safe">
+          <img src={logo} alt="" />
+          <span className="">Quick</span>
+          <span className="">Lance</span>
+        </h1>
+      </div>
+      <div className="navbar-center justify-center items-center gap-4 ">
+        <div className="md:flex hidden text-xl">{nav}</div>
+        <div className="md:hidden flex ml-6">{navEnd}</div>
+      </div>
+      <div className="navbar-end mx-20 md:flex hidden">{navEnd}</div>
+    </div>
+  );
+};
+
+export default Navbar;
