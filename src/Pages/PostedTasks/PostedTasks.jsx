@@ -72,7 +72,7 @@ const PostedTasks = () => {
     <div className="overflow-hidden px-2 md:px-10 mt-6 min-h-screen bg-gradient-to-br from-lime-100 via-emerald-100 to-teal-100">
       <h2 className="text-2xl font-bold mb-4 text-center">My Posted Tasks</h2>
       <table className="table md:w-3xl w-sm shadow-2xl rounded-lg mx-auto">
-        <thead className="bg-gray-100 md:text-lg font-bold font-[raleway]">
+        <thead className="bg-gray-100 md:text-lg font-bold font-[raleway] dark:text-orange-600">
           <tr>
             <th>Title</th>
             <th>Deadline</th>

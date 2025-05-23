@@ -124,11 +124,11 @@ const TaskDetails = () => {
           variants={textVariants}
           custom={1}
         >
-          <strong className="text-emerald-700">Category:</strong>{' '}
+          <strong className="text-emerald-700 font-[Poppins]">Category:</strong>{' '}
           {taskInfo.category}
         </motion.p>
         <motion.p
-          className="mb-4 text-gray-700 text-lg"
+          className="mb-4 text-gray-700 text-lg font-[Mulish]"
           variants={textVariants}
           custom={2}
         >
@@ -136,7 +136,7 @@ const TaskDetails = () => {
           {taskInfo.deadline}
         </motion.p>
         <motion.p
-          className="mb-4 text-gray-700 text-lg"
+          className="mb-4 text-gray-700 text-lg font-[sora]"
           variants={textVariants}
           custom={3}
         >
@@ -144,7 +144,7 @@ const TaskDetails = () => {
           {taskInfo.description}
         </motion.p>
         <motion.p
-          className="mb-6 text-gray-700 text-lg"
+          className="mb-6 text-gray-700 text-lg font-[mulish]"
           variants={textVariants}
           custom={4}
         >
