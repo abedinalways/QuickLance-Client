@@ -7,7 +7,7 @@ import ThemeToggle from '../../Components/ThemeToggle/ThemeToggle';
 const Root = () => {
   return (
     <>
-      <div className="flex md:gap-8 gap-4 items-center">
+      <div className="flex md:gap-6 gap-4">
         <Navbar />
         <ThemeToggle/>
       </div>

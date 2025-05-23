@@ -40,7 +40,7 @@ export default function Banner() {
     },
   ];
   return (
-    <div className="w-full h-[80vh] overflow-hidden">
+    <div className="w-full md:h-[80vh] overflow-hidden">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -56,7 +56,7 @@ export default function Banner() {
         {slides.map((slide, idx) => (
           <SwiperSlide key={idx}>
             <div
-              className="w-full h-[30rem] bg-cover bg-center bg-no-repeat flex items-center justify-start px-10 md:px-20"
+              className="w-full h-[30rem] md:bg-cover md:bg-center bg-no-repeat flex items-center justify-start px-4 md:px-20"
               style={{
                 backgroundImage: `url(${slide.image})`,
               }}

@@ -152,7 +152,7 @@ const Navbar = () => {
       ) : (
         <NavLink
           to="/register"
-          className="btn bg-white text-blue-500 font-bold font-[sora] border-1 border-cyan-200 rounded-sm text-md hover:bg-blue-500 hover:text-white px-6 hidden md:flex"
+          className="btn bg-white text-blue-500 font-bold font-[sora] border-1 border-cyan-200 rounded-sm text-md hover:bg-blue-500 hover:text-white px-6 md:flex hidden"
         >
           SingUp
         </NavLink>
