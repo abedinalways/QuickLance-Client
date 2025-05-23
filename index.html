@@ -9,9 +9,12 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx">
-      // if (localStorage.getItem('theme') === 'dark') {
-      //     document.documentElement.classList.add('dark');
-      //   }
+      (function () {
+          const savedTheme = localStorage.getItem('theme');
+          if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+          }
+        })();
     </script>
   </body>
 </html>

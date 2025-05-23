@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <>
       <Banner />
-      <div className=" bg-gray-100">
+      <div className="">
         <h1 className="text-center font-extrabold font-[Suse] text-3xl md:text-5xl mt-4 text-blue-800">
           Featured Tasks
         </h1>

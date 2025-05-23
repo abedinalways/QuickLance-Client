@@ -8,7 +8,7 @@ import { BiTask } from 'react-icons/bi';
 
 const Footer = () => {
   return (
-    <footer className=" border-t-amber-200 text-black h-35">
+    <footer className=" border-t-1 border-blue-300 text-black h-35">
       <div className="flex items-center justify-center py-4 mb-2">
         <h1 className="font-[sora] font-bold text-sm flex items-center-safe text-blue-900">
           <span className="space-x-2">
