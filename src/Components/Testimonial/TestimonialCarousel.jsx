@@ -29,10 +29,10 @@ const TestimonialCarousel = () => {
 
   return (
     <section className="max-w-7xl mx-auto py-16 px-4 text-center">
-      <h2 className="text-center font-extrabold font-[Suse] text-3xl md:text-5xl mt-4 text-blue-800">
+      <h2 className="text-center font-extrabold font-[Suse] text-3xl md:text-5xl mt-4 text-blue-800 dark:text-white">
         What Our Users Saying About Us
       </h2>
-      <p className="text-center font-extrabold font-[Mulish] text-sm md:text-md mt-4 text-blue-800 mb-4">
+      <p className="text-center font-extrabold font-[Mulish] text-sm md:text-md mt-4 text-blue-800 mb-4 dark:text-white">
         Hear directly from our satisfied customers about their experiences{' '}
         <br /> and how we've helped them achieve their goals.
       </p>
@@ -66,7 +66,7 @@ const TestimonialCarousel = () => {
             
             <Quote className="w-8 h-8 text-blue-500 mb-4" />
             
-            <p key={index} className="text-gray-700 italic mb-4 min-h-[80px] font-[Mulish]">
+            <p key={index} className="text-gray-700 italic mb-4 min-h-[80px] font-[Mulish] dark:text-white">
               {' '}
               
               {displayedQuote}
