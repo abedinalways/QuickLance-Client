@@ -11,7 +11,7 @@ import PrivateRoute from './PrivateRoute';
 import PostedTasks from '../Pages/PostedTasks/PostedTasks';
 import UpdateTask from '../Pages/UpdateTask/UpdateTask';
 import ErrorPage from '../Pages/ErrorPage/ErrorPage';
-
+import fetchWithToken from '../API/fetchWithToken';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
           <span className="loading loading-ball loading-xs"></span>
         ),
         loader: () =>
-          fetch(
+          fetchWithToken(
             'https://quick-lance-server-hd5bht5fm-abedinalways-projects.vercel.app/tasks'
           ),
         Component: Home,
@@ -45,7 +45,7 @@ const router = createBrowserRouter([
           <span className="loading loading-ball loading-xs"></span>
         ),
         loader: () =>
-          fetch(
+          fetchWithToken(
             'https://quick-lance-server-hd5bht5fm-abedinalways-projects.vercel.app/allTasks'
           ),
         Component: BrowseTasks,
@@ -56,7 +56,7 @@ const router = createBrowserRouter([
           <span className="loading loading-ball loading-xs"></span>
         ),
         loader: async ({ params }) =>
-          fetch(
+          fetchWithToken(
             `https://quick-lance-server-hd5bht5fm-abedinalways-projects.vercel.app/allTasks/${params.id}`
           ),
         element: (
@@ -79,7 +79,7 @@ const router = createBrowserRouter([
           <span className="loading loading-ball loading-xs"></span>
         ),
         loader: ({ params }) =>
-          fetch(
+          fetchWithToken(
             `https://quick-lance-server-hd5bht5fm-abedinalways-projects.vercel.app/allTasks/${params.id}`
           ),
         element: (
