@@ -11,25 +11,30 @@ const AddTask = () => {
     const newTask = Object.fromEntries(formData.entries());
     console.log(newTask);
     //send task to db
-    fetch('http://localhost:3000/tasks', {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newTask)
-    }).then(res => res.json()).then(data => {
-      if (data.insertedId) {
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Successfully added a task',
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        form.reset();
+    fetch(
+      'https://quick-lance-server-hd5bht5fm-abedinalways-projects.vercel.app/tasks',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newTask),
       }
-    });
-  }
+    )
+      .then(res => res.json())
+      .then(data => {
+        if (data.insertedId) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Successfully added a task',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          form.reset();
+        }
+      });
+  };
   return (
     <div className=" bg-gray-100 ">
       <Helmet>
@@ -102,7 +107,6 @@ const AddTask = () => {
             type="email"
             name="email"
             value={user?.email || ''}
-            
             readOnly
             className="max-w-md border p-2 rounded focus:outline-blue-500"
           />
@@ -112,7 +116,6 @@ const AddTask = () => {
           <input
             type="text"
             name="name"
-            
             value={user?.displayName || ''}
             readOnly
             className="max-w-md border p-2 rounded focus:outline-blue-500"

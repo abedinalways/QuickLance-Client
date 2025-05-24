@@ -17,7 +17,7 @@ const router = createBrowserRouter([
     path: '/',
     Component: Root,
     errorElement: <ErrorPage />,
-    
+
     children: [
       {
         index: true,
@@ -25,7 +25,10 @@ const router = createBrowserRouter([
         hydrateFallbackElement: (
           <span className="loading loading-ball loading-xs"></span>
         ),
-        loader: () => fetch('http://localhost:3000/tasks'),
+        loader: () =>
+          fetch(
+            'https://quick-lance-server-hd5bht5fm-abedinalways-projects.vercel.app/tasks'
+          ),
         Component: Home,
       },
       {
@@ -41,7 +44,10 @@ const router = createBrowserRouter([
         hydrateFallbackElement: (
           <span className="loading loading-ball loading-xs"></span>
         ),
-        loader: () => fetch('http://localhost:3000/allTasks'),
+        loader: () =>
+          fetch(
+            'https://quick-lance-server-hd5bht5fm-abedinalways-projects.vercel.app/allTasks'
+          ),
         Component: BrowseTasks,
       },
       {
@@ -50,7 +56,9 @@ const router = createBrowserRouter([
           <span className="loading loading-ball loading-xs"></span>
         ),
         loader: async ({ params }) =>
-          fetch(`http://localhost:3000/allTasks/${params.id}`),
+          fetch(
+            `https://quick-lance-server-hd5bht5fm-abedinalways-projects.vercel.app/allTasks/${params.id}`
+          ),
         element: (
           <PrivateRoute>
             <TaskDetails />
@@ -71,7 +79,9 @@ const router = createBrowserRouter([
           <span className="loading loading-ball loading-xs"></span>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/allTasks/${params.id}`),
+          fetch(
+            `https://quick-lance-server-hd5bht5fm-abedinalways-projects.vercel.app/allTasks/${params.id}`
+          ),
         element: (
           <PrivateRoute>
             <UpdateTask />

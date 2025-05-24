@@ -10,7 +10,7 @@ const Root = () => {
   return (
     <>
       <Helmet>
-        <title>Home</title>
+        <title>QuickLance||Home</title>
       </Helmet>
       <div className="flex md:gap-6 gap-4">
         <Navbar />

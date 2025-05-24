@@ -4,7 +4,6 @@ import { useLoaderData, useNavigate } from 'react-router';
 import { AuthContext } from '../../Context/AuthContext';
 import { Helmet } from 'react-helmet-async';
 
-
 const UpdateTask = () => {
   const { user } = use(AuthContext);
   const loadedTask = useLoaderData();
@@ -34,13 +33,16 @@ const UpdateTask = () => {
   const handleUpdateTask = e => {
     e.preventDefault();
 
-    fetch(`http://localhost:3000/allTasks/${loadedTask._id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(taskData),
-    })
+    fetch(
+      `https://quick-lance-server-hd5bht5fm-abedinalways-projects.vercel.app/allTasks/${loadedTask._id}`,
+      {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(taskData),
+      }
+    )
       .then(res => res.json())
       .then(data => {
         if (data.modifiedCount > 0) {

@@ -2,7 +2,7 @@ import React, { use } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Context/AuthContext';
-import { Link} from 'react-router'
+import { Link } from 'react-router';
 import { Helmet } from 'react-helmet-async';
 const PostedTasks = () => {
   const { user } = use(AuthContext);
@@ -16,15 +16,17 @@ const PostedTasks = () => {
     enabled: !!user?.email,
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:3000/postedTasks?email=${user.email}`
+        `https://quick-lance-server-hd5bht5fm-abedinalways-projects.vercel.app/postedTasks?email=${user.email}`
       );
       return res.json();
     },
   });
-  
+
   const handleShowBids = async taskId => {
     try {
-      const res = await fetch(`http://localhost:3000/bids?taskId=${taskId}`);
+      const res = await fetch(
+        `https://quick-lance-server-hd5bht5fm-abedinalways-projects.vercel.app/bids?taskId=${taskId}`
+      );
       const data = await res.json();
 
       const bidCount = data.length;
@@ -41,7 +43,6 @@ const PostedTasks = () => {
     }
   };
 
-
   const handleDelete = async id => {
     const confirm = await Swal.fire({
       title: 'Are you sure?',
@@ -52,9 +53,12 @@ const PostedTasks = () => {
     });
 
     if (confirm.isConfirmed) {
-      const res = await fetch(`http://localhost:3000/allTasks/${id}`, {
-        method: 'DELETE',
-      });
+      const res = await fetch(
+        `https://quick-lance-server-hd5bht5fm-abedinalways-projects.vercel.app/allTasks/${id}`,
+        {
+          method: 'DELETE',
+        }
+      );
       const data = await res.json();
       if (data.deletedCount > 0) {
         Swal.fire('Deleted!', 'Task has been deleted.', 'success');
