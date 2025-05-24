@@ -3,6 +3,7 @@ import { Link, useLoaderData } from 'react-router';
 import { motion } from 'framer-motion';
 import { AuthContext } from '../../Context/AuthContext';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 const TaskDetails = () => {
   const { user } = use(AuthContext);
   const taskInfo = useLoaderData();
@@ -95,6 +96,10 @@ const TaskDetails = () => {
    };
 
   return (
+    <>
+      <Helmet>
+        <title>Task-Details</title>
+    </Helmet>
     <div className="min-h-screen bg-gradient-to-br from-lime-100 via-emerald-100 to-teal-100 flex items-center justify-center p-4 flex-col space-y-4">
       {/* Display bid count */}
       <motion.div
@@ -183,6 +188,7 @@ const TaskDetails = () => {
         </Link>
       </motion.div>
     </div>
+    </>
   );
 };
 

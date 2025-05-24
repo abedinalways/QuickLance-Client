@@ -5,12 +5,16 @@ import TaskCard from '../../Components/TaskCard/TaskCard';
 import FreelancerGrid from '../../Components/Freelancers/FreelancerGrid';
 import TestimonialCarousel from '../../Components/Testimonial/TestimonialCarousel';
 import FreelancerStories from '../../Components/FreelancerStories/FreelancerStories';
+import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
   const tasks = useLoaderData();
   console.log(tasks);
   return (
     <>
+      <Helmet>
+        <title>Home</title>
+      </Helmet>
       <Banner />
       <div className="">
         <h1 className="text-center font-extrabold font-[Suse] text-3xl md:text-5xl mt-4 text-blue-800 dark:text-white">

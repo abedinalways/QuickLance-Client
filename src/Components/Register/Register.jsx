@@ -7,6 +7,7 @@ import { AuthContext } from '../../Context/AuthContext';
 import { auth } from '../../Firebase/Firebase.init';
 import { updateProfile } from 'firebase/auth';
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
 
 const Register = () => {
   const { createUser, user, googleSignIn } = use(AuthContext);
@@ -84,6 +85,9 @@ const Register = () => {
   };
   return (
     <>
+      <Helmet>
+        <title>Please Register</title>
+      </Helmet>
       <div className="flex flex-col justify-center items-center mt-6 mx-auto relative bg-base-200">
         <form
           onSubmit={handleRegister}

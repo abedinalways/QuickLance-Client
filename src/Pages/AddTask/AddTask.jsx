@@ -1,6 +1,7 @@
 import React, { use } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Context/AuthContext';
+import { Helmet } from 'react-helmet-async';
 const AddTask = () => {
   const { user } = use(AuthContext);
   const handleAddTask = e => {
@@ -31,12 +32,15 @@ const AddTask = () => {
   }
   return (
     <div className=" bg-gray-100 ">
+      <Helmet>
+        <title>Add-Task</title>
+      </Helmet>
       <h2 className="text-4xl font-bold mb-2 py-4 text-center font-[Suse] dark:text-blue-600">
         Post a Task
       </h2>
       <form
         onSubmit={handleAddTask}
-        className="md:max-w-md max-w-sm mx-auto bg-white p-6 rounded-xl shadow-lg space-y-2 animate-fade-in font-[raleway] dark:text-blue-800"
+        className="md:max-w-md max-w-sm mx-auto bg-white border border-amber-200 p-6 rounded-xl shadow-xl space-y-2 animate-fade-in font-[raleway] dark:text-blue-800"
       >
         <div className="flex flex-col gap-2">
           <label className="label font-bold">Task</label>

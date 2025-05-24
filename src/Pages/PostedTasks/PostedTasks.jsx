@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Context/AuthContext';
 import { Link} from 'react-router'
+import { Helmet } from 'react-helmet-async';
 const PostedTasks = () => {
   const { user } = use(AuthContext);
 
@@ -70,6 +71,9 @@ const PostedTasks = () => {
 
   return (
     <div className="overflow-hidden px-2 md:px-10 mt-6 min-h-screen bg-gradient-to-br from-lime-100 via-emerald-100 to-teal-100">
+      <Helmet>
+        <title>My Posted-Tasks</title>
+      </Helmet>
       <h2 className="text-2xl font-bold mb-4 text-center">My Posted Tasks</h2>
       <table className="table md:w-3xl w-sm shadow-2xl rounded-lg mx-auto">
         <thead className="bg-gray-100 md:text-lg font-bold font-[raleway] dark:text-orange-600">

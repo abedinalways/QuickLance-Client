@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { useLoaderData, useNavigate } from 'react-router';
 import { AuthContext } from '../../Context/AuthContext';
+import { Helmet } from 'react-helmet-async';
 
 
 const UpdateTask = () => {
@@ -57,12 +58,15 @@ const UpdateTask = () => {
 
   return (
     <div className=" bg-gray-100">
+      <Helmet>
+        <title>Update-Task</title>
+      </Helmet>
       <h2 className="text-2xl font-bold mb-4 mt-2 text-center font-[Suse]">
         Update Task
       </h2>
       <form
         onSubmit={handleUpdateTask}
-        className="md:max-w-md max-w-sm mx-auto bg-white p-6 rounded-xl shadow-lg space-y-2 animate-fade-in font-[raleway]"
+        className="md:max-w-md max-w-sm mx-auto bg-white p-6 rounded-xl shadow-lg space-y-2 animate-fade-in font-[raleway] dark:text-blue-800"
       >
         <div className="flex flex-col gap-2">
           <label className="label font-bold">Task</label>

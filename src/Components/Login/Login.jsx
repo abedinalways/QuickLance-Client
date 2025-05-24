@@ -6,6 +6,7 @@ import { AuthContext } from '../../Context/AuthContext';
 import toast, { Toaster } from 'react-hot-toast';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../../Firebase/Firebase.init';
+import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
   const emailRef = useRef();
@@ -56,6 +57,9 @@ const Login = () => {
 
   return (
     <div className="flex flex-col justify-center items-center mt-6 mx-auto bg-base-200">
+      <Helmet>
+        <title>Login</title>
+      </Helmet>
       <Toaster />
       <form
         onSubmit={handleLogin}
