@@ -4,6 +4,7 @@ import { useLoaderData } from 'react-router';
 import TaskCard from '../../Components/TaskCard/TaskCard';
 import FreelancerGrid from '../../Components/Freelancers/FreelancerGrid';
 import TestimonialCarousel from '../../Components/Testimonial/TestimonialCarousel';
+import FreelancerStories from '../../Components/FreelancerStories/FreelancerStories';
 
 const Home = () => {
   const tasks = useLoaderData();
@@ -25,7 +26,8 @@ const Home = () => {
         </div>
       </div>
       <FreelancerGrid />
-      <TestimonialCarousel/>
+      <TestimonialCarousel />
+      <FreelancerStories/>
     </>
   );
 };
