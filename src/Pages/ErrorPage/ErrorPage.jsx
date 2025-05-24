@@ -2,9 +2,11 @@ import React from 'react';
 
 import { Link } from 'react-router';
 import './404.css';
+
 const ErrorPage = () => {
   return (
     <>
+      
       <section className="page_404">
         <div className="container">
           <div className="row">
