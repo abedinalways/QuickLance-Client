@@ -11,16 +11,13 @@ const AddTask = () => {
     const newTask = Object.fromEntries(formData.entries());
     console.log(newTask);
     //send task to db
-    fetch(
-      'https://quick-lance-server-hd5bht5fm-abedinalways-projects.vercel.app/tasks',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newTask),
-      }
-    )
+    fetch('https://quick-lance-server.vercel.app/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newTask),
+    })
       .then(res => res.json())
       .then(data => {
         if (data.insertedId) {

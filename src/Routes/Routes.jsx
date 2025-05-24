@@ -11,7 +11,7 @@ import PrivateRoute from './PrivateRoute';
 import PostedTasks from '../Pages/PostedTasks/PostedTasks';
 import UpdateTask from '../Pages/UpdateTask/UpdateTask';
 import ErrorPage from '../Pages/ErrorPage/ErrorPage';
-import fetchWithToken from '../API/fetchWithToken';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -25,10 +25,7 @@ const router = createBrowserRouter([
         hydrateFallbackElement: (
           <span className="loading loading-ball loading-xs"></span>
         ),
-        loader: () =>
-          fetchWithToken(
-            'https://quick-lance-server-hd5bht5fm-abedinalways-projects.vercel.app/tasks'
-          ),
+        loader: () => fetch('https://quick-lance-server.vercel.app/tasks'),
         Component: Home,
       },
       {
@@ -44,10 +41,7 @@ const router = createBrowserRouter([
         hydrateFallbackElement: (
           <span className="loading loading-ball loading-xs"></span>
         ),
-        loader: () =>
-          fetchWithToken(
-            'https://quick-lance-server-hd5bht5fm-abedinalways-projects.vercel.app/allTasks'
-          ),
+        loader: () => fetch('https://quick-lance-server.vercel.app/allTasks'),
         Component: BrowseTasks,
       },
       {
@@ -56,9 +50,7 @@ const router = createBrowserRouter([
           <span className="loading loading-ball loading-xs"></span>
         ),
         loader: async ({ params }) =>
-          fetchWithToken(
-            `https://quick-lance-server-hd5bht5fm-abedinalways-projects.vercel.app/allTasks/${params.id}`
-          ),
+          fetch(`https://quick-lance-server.vercel.app/allTasks/${params.id}`),
         element: (
           <PrivateRoute>
             <TaskDetails />
@@ -79,9 +71,7 @@ const router = createBrowserRouter([
           <span className="loading loading-ball loading-xs"></span>
         ),
         loader: ({ params }) =>
-          fetchWithToken(
-            `https://quick-lance-server-hd5bht5fm-abedinalways-projects.vercel.app/allTasks/${params.id}`
-          ),
+          fetch(`https://quick-lance-server.vercel.app/allTasks/${params.id}`),
         element: (
           <PrivateRoute>
             <UpdateTask />

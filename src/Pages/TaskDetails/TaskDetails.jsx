@@ -1,199 +1,121 @@
-import React, { use, useEffect, useState } from 'react';
-import { Link, useLoaderData } from 'react-router';
-import { motion } from 'framer-motion';
-import { AuthContext } from '../../Context/AuthContext';
-import Swal from 'sweetalert2';
+import React, { useContext, useEffect, useState } from 'react';
+import { useLoaderData } from 'react-router';
 import { Helmet } from 'react-helmet-async';
+import { AuthContext } from '../../Context/AuthContext';
+import toast from 'react-hot-toast';
+
 const TaskDetails = () => {
-  const { user } = use(AuthContext);
-  const taskInfo = useLoaderData();
-  const [bidsCount, setBidsCount] = useState(0);
+  const task = useLoaderData();
+  const { user } = useContext(AuthContext);
   const [hasBid, setHasBid] = useState(false);
+  const [bidsCount, setBidsCount] = useState(0);
 
   useEffect(() => {
+    // Fetch existing bids for the task to get count and check if user already bid
     const fetchBids = async () => {
       try {
         const res = await fetch(
-          `https://quick-lance-server-hd5bht5fm-abedinalways-projects.vercel.app/bids?taskId=${taskInfo._id}`
+          `https://quick-lance-server.vercel.app/bids?taskId=${task._id}`
         );
         const data = await res.json();
         setBidsCount(data.length);
 
-        if (user?.email) {
-          const alreadyBid = data.some(bid => bid.userEmail === user.email);
-          setHasBid(alreadyBid);
-        }
-      } catch (err) {
-        console.error('Error fetching bids:', err);
+        const userAlreadyBid = data.find(bid => bid.userEmail === user?.email);
+        if (userAlreadyBid) setHasBid(true);
+      } catch (error) {
+        toast.error('Failed to load bid info');
       }
     };
 
-    fetchBids();
-  }, [taskInfo._id, user?.email]);
+    if (user?.email) {
+      fetchBids();
+    }
+  }, [task._id, user?.email]);
 
   const handleBid = async () => {
-    if (!user?.email) {
-      Swal.fire('Please login to bid on this task.');
+    if (hasBid) {
+      toast.error('You have already bid this task');
       return;
     }
 
-    const newBid = {
-      taskId: taskInfo._id,
+    const bidInfo = {
+      taskId: task._id,
       userEmail: user.email,
       bidTime: new Date(),
     };
 
     try {
-      const res = await fetch(
-        'https://quick-lance-server-hd5bht5fm-abedinalways-projects.vercel.app/bids',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(newBid),
-        }
-      );
+      const res = await fetch('https://quick-lance-server.vercel.app/bids', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(bidInfo),
+      });
 
       const result = await res.json();
-
-      if (res.ok) {
+      if (result.insertedId) {
+        toast.success('You have successfully bid this task');
         setBidsCount(prev => prev + 1);
         setHasBid(true);
-        Swal.fire('Success!', 'Your bid has been submitted.', 'success');
       } else {
-        Swal.fire(
-          'Oops!',
-          result.message || 'You already bid on this task.',
-          'error'
-        );
+        toast.error('Failed to place bid');
       }
     } catch (error) {
-      Swal.fire('Error', 'Something went wrong while bidding.', 'error');
+      toast.error('Error placing bid');
     }
-  };
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: 'easeOut' },
-    },
-  };
-
-  const textVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: i => ({
-      opacity: 1,
-      x: 0,
-      transition: { delay: i * 0.2, duration: 0.5 },
-    }),
-  };
-
-  const buttonVariants = {
-    rest: { scale: 1, boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)' },
-    hover: {
-      scale: 1.05,
-      boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.2)',
-      background: 'linear-gradient(45deg, #84cc16, #22c55e)',
-      transition: { duration: 0.3 },
-    },
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-br from-teal-50 via-lime-100 to-emerald-100 px-4 py-8">
       <Helmet>
-        <title>Task-Details</title>
+        <title>Task Details</title>
       </Helmet>
-      <div className="min-h-screen bg-gradient-to-br from-lime-100 via-emerald-100 to-teal-100 flex items-center justify-center p-4 flex-col space-y-4">
-        {/* Display bid count */}
-        <motion.div
-          className="text-lg text-emerald-800 font-semibold bg-white px-4 py-2 rounded-lg shadow"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-        >
-          {bidsCount} {bidsCount === 1 ? 'person has' : 'people have'} bid on
-          this task.
-        </motion.div>
 
-        <motion.div
-          className="md:max-w-xl max-w-md mx-auto p-8 bg-white rounded-2xl border-2 border-lime-200 shadow-2xl"
-          variants={cardVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.h1
-            className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-lime-600 to-emerald-600 mb-6 font-[Suse]"
-            variants={textVariants}
-            custom={0}
-          >
-            {taskInfo.task}
-          </motion.h1>
-          <motion.p
-            className="mb-4 text-gray-700 text-lg"
-            variants={textVariants}
-            custom={1}
-          >
-            <strong className="text-emerald-700 font-[Poppins]">
-              Category:
-            </strong>{' '}
-            {taskInfo.category}
-          </motion.p>
-          <motion.p
-            className="mb-4 text-gray-700 text-lg font-[Mulish]"
-            variants={textVariants}
-            custom={2}
-          >
-            <strong className="text-emerald-700">Deadline:</strong>{' '}
-            {taskInfo.deadline}
-          </motion.p>
-          <motion.p
-            className="mb-4 text-gray-700 text-lg font-[sora]"
-            variants={textVariants}
-            custom={3}
-          >
-            <strong className="text-emerald-700">Description:</strong>{' '}
-            {taskInfo.description}
-          </motion.p>
-          <motion.p
-            className="mb-6 text-gray-700 text-lg font-[mulish]"
-            variants={textVariants}
-            custom={4}
-          >
-            <strong className="text-emerald-700">Budget:</strong> $
-            {taskInfo.budget}
-          </motion.p>
+      <div className="max-w-2xl mx-auto bg-white shadow-xl rounded-2xl p-6 border border-teal-200">
+        <p className="text-lg font-semibold text-center text-purple-800 font-[Mulish] mb-4">
+          You bid for {bidsCount} opportunit{bidsCount === 1 ? 'y' : 'ies'}.
+        </p>
 
-          {/* Bid Button */}
-          <motion.button
+        <h2 className="text-3xl font-bold text-center text-emerald-700 mb-6 font-[Sora]">
+          Task Details
+        </h2>
+
+        <div className="space-y-4 font-[Mulish] text-blue-800 text-base md:text-lg">
+          <p>
+            <strong>Title:</strong> {task.task}
+          </p>
+          <p>
+            <strong>Category:</strong> {task.category}
+          </p>
+          <p>
+            <strong>Deadline:</strong> {task.deadline}
+          </p>
+          <p>
+            <strong>Budget:</strong> ${task.budget}
+          </p>
+          <p>
+            <strong>Description:</strong> {task.description}
+          </p>
+          <p>
+            <strong>Status:</strong> {task.status || 'Open'}
+          </p>
+          <p>
+            <strong>Posted By:</strong> {task.email}
+          </p>
+        </div>
+
+        <div className="mt-6 text-center">
+          <button
             onClick={handleBid}
             disabled={hasBid}
-            className={`w-full py-3 px-6 text-white font-semibold rounded-lg 
-    ${
-      hasBid
-        ? 'bg-gray-400 cursor-not-allowed'
-        : 'bg-gradient-to-r from-teal-500 to-emerald-500'
-    } mb-4`}
-            variants={buttonVariants}
-            initial="rest"
-            whileHover={!hasBid ? 'hover' : ''}
-            whileTap={{ scale: 0.95 }}
+            className="btn btn-primary bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full disabled:opacity-50"
           >
-            {hasBid ? 'You Already Bid' : 'Bid for This Task'}
-          </motion.button>
-
-          <Link to="/browseTask">
-            <motion.button
-              className="w-full py-3 px-6 text-white font-semibold rounded-lg bg-gradient-to-r from-lime-500 to-emerald-500"
-              variants={buttonVariants}
-              initial="rest"
-              whileHover="hover"
-              whileTap={{ scale: 0.95 }}
-            >
-              Go To Task
-            </motion.button>
-          </Link>
-        </motion.div>
+            {hasBid ? 'Already Bid' : 'Bid'}
+          </button>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

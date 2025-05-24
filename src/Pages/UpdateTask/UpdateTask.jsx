@@ -33,16 +33,13 @@ const UpdateTask = () => {
   const handleUpdateTask = e => {
     e.preventDefault();
 
-    fetch(
-      `https://quick-lance-server-hd5bht5fm-abedinalways-projects.vercel.app/allTasks/${loadedTask._id}`,
-      {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(taskData),
-      }
-    )
+    fetch(`https://quick-lance-server.vercel.app/allTasks/${loadedTask._id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(taskData),
+    })
       .then(res => res.json())
       .then(data => {
         if (data.modifiedCount > 0) {

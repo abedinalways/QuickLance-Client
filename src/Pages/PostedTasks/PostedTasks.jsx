@@ -16,7 +16,7 @@ const PostedTasks = () => {
     enabled: !!user?.email,
     queryFn: async () => {
       const res = await fetch(
-        `https://quick-lance-server-hd5bht5fm-abedinalways-projects.vercel.app/postedTasks?email=${user.email}`
+        `https://quick-lance-server.vercel.app/postedTasks?email=${user.email}`
       );
       return res.json();
     },
@@ -25,7 +25,7 @@ const PostedTasks = () => {
   const handleShowBids = async taskId => {
     try {
       const res = await fetch(
-        `https://quick-lance-server-hd5bht5fm-abedinalways-projects.vercel.app/bids?taskId=${taskId}`
+        `https://quick-lance-server.vercel.app/bids?taskId=${taskId}`
       );
       const data = await res.json();
 
@@ -54,7 +54,7 @@ const PostedTasks = () => {
 
     if (confirm.isConfirmed) {
       const res = await fetch(
-        `https://quick-lance-server-hd5bht5fm-abedinalways-projects.vercel.app/allTasks/${id}`,
+        `https://quick-lance-server.vercel.app/allTasks/${id}`,
         {
           method: 'DELETE',
         }
