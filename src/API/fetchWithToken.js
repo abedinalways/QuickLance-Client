@@ -1,4 +1,4 @@
-import { auth } from '../Firebase'// adjust path to your firebase file
+import { auth } from './firebase'
 
 const fetchWithToken = async (url, options = {}) => {
   const user = auth.currentUser;
