@@ -85,7 +85,7 @@ const AddTask = () => {
             type="date"
             name="deadline"
             required
-            className="max-w-md border p-2 rounded focus:outline-blue-500"
+            className="max-w-md border p-2 rounded focus:outline-blue-500 dark:text-blue-600"
           />
         </div>
         <div className="flex flex-col gap-2">

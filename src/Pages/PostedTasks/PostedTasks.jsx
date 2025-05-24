@@ -1,6 +1,7 @@
 import React, { use } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
+import { motion } from 'framer-motion';
 import { AuthContext } from '../../Context/AuthContext';
 import { Link } from 'react-router';
 import { Helmet } from 'react-helmet-async';
@@ -71,7 +72,27 @@ const PostedTasks = () => {
     return <div className="text-center mt-10">Loading your tasks...</div>;
 
   if (tasks.length === 0)
-    return <div className="text-center mt-10">No tasks posted yet.</div>;
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="text-center mt-16 px-4"
+      >
+        <h2 className="text-red-600 dark:text-white text-2xl md:text-4xl font-[Sora] mb-6">
+          No tasks posted yet.
+        </h2>
+        <motion.img
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          src="https://i.gifer.com/7VE.gif"
+          alt="No tasks"
+          className="mx-auto max-w-[300px] md:max-w-[400px] rounded-xl shadow-lg"
+        />
+      </motion.div>
+    );
+
 
   return (
     <div className="overflow-hidden px-2 md:px-10 mt-6 min-h-screen bg-gradient-to-br from-lime-100 via-emerald-100 to-teal-100">

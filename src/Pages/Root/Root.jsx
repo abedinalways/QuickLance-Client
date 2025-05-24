@@ -14,9 +14,11 @@ const Root = () => {
       </Helmet>
       <div className="flex md:gap-6 gap-4">
         <Navbar />
-        <ThemeToggle/>
+        <ThemeToggle />
       </div>
-      <Outlet />
+      <div className="min-h-[calc(100vh-290px)]">
+        <Outlet></Outlet>
+      </div>
       <Footer />
     </>
   );

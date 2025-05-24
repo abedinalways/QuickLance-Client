@@ -2,12 +2,13 @@ import React from 'react';
 
 import { Link } from 'react-router';
 import './404.css';
+import Navbar from '../../Components/Navbar/Navbar';
 
 const ErrorPage = () => {
   return (
     <>
-      
-      <section className="page_404">
+      <Navbar/>
+      <section className="page_404 min-h-screen">
         <div className="container">
           <div className="row">
             <div className="col-sm-12">

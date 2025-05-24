@@ -6,6 +6,7 @@ import router from './Routes/Routes'
 import AuthProvider from './Context/AuthProvider'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { HelmetProvider } from 'react-helmet-async'
+import { Toaster } from 'react-hot-toast'
 
 
 
@@ -16,10 +17,11 @@ createRoot(document.getElementById('root')).render(
     <AuthProvider>
       <QueryClientProvider client={queryClient}>
         <HelmetProvider>
-          
-          <RouterProvider router={router}></RouterProvider>
-          </HelmetProvider>
-        
+          <>
+            <RouterProvider router={router}></RouterProvider>
+            <Toaster position="top-center" reverseOrder={false} />
+          </>
+        </HelmetProvider>
       </QueryClientProvider>
     </AuthProvider>
   </StrictMode>
