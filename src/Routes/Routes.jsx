@@ -25,7 +25,7 @@ const router = createBrowserRouter([
         hydrateFallbackElement: (
           <span className="loading loading-ball loading-xs"></span>
         ),
-        loader: () => fetch('https://quick-lance-server.vercel.app/tasks'),
+        loader: () => fetch('http://localhost:3000/tasks'),
         Component: Home,
       },
       {
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
         hydrateFallbackElement: (
           <span className="loading loading-ball loading-xs"></span>
         ),
-        loader: () => fetch('https://quick-lance-server.vercel.app/allTasks'),
+        loader: () => fetch('http://localhost:3000/allTasks'),
         Component: BrowseTasks,
       },
       {
@@ -50,7 +50,7 @@ const router = createBrowserRouter([
           <span className="loading loading-ball loading-xs"></span>
         ),
         loader: async ({ params }) =>
-          fetch(`https://quick-lance-server.vercel.app/allTasks/${params.id}`),
+          fetch(`http://localhost:3000/allTasks/${params.id}`),
         element: (
           <PrivateRoute>
             <TaskDetails />
@@ -71,7 +71,7 @@ const router = createBrowserRouter([
           <span className="loading loading-ball loading-xs"></span>
         ),
         loader: ({ params }) =>
-          fetch(`https://quick-lance-server.vercel.app/allTasks/${params.id}`),
+          fetch(`http://localhost:3000/allTasks/${params.id}`),
         element: (
           <PrivateRoute>
             <UpdateTask />

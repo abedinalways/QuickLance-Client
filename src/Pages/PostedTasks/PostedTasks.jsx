@@ -17,7 +17,7 @@ const PostedTasks = () => {
     enabled: !!user?.email,
     queryFn: async () => {
       const res = await fetch(
-        `https://quick-lance-server.vercel.app/postedTasks?email=${user.email}`
+        `http://localhost:3000/postedTasks?email=${user.email}`
       );
       return res.json();
     },
@@ -25,9 +25,7 @@ const PostedTasks = () => {
 
   const handleShowBids = async taskId => {
     try {
-      const res = await fetch(
-        `https://quick-lance-server.vercel.app/bids?taskId=${taskId}`
-      );
+      const res = await fetch(`http://localhost:3000/bids?taskId=${taskId}`);
       const data = await res.json();
 
       const bidCount = data.length;
@@ -54,12 +52,9 @@ const PostedTasks = () => {
     });
 
     if (confirm.isConfirmed) {
-      const res = await fetch(
-        `https://quick-lance-server.vercel.app/allTasks/${id}`,
-        {
-          method: 'DELETE',
-        }
-      );
+      const res = await fetch(`http://localhost:3000/allTasks/${id}`, {
+        method: 'DELETE',
+      });
       const data = await res.json();
       if (data.deletedCount > 0) {
         Swal.fire('Deleted!', 'Task has been deleted.', 'success');
@@ -92,7 +87,6 @@ const PostedTasks = () => {
         />
       </motion.div>
     );
-
 
   return (
     <div className="overflow-hidden px-2 md:px-10 mt-6 min-h-screen bg-gradient-to-br from-lime-100 via-emerald-100 to-teal-100">

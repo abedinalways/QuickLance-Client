@@ -16,7 +16,7 @@ const TaskDetails = () => {
     const fetchBids = async () => {
       try {
         const res = await fetch(
-          `https://quick-lance-server.vercel.app/bids?taskId=${task._id}`
+          `http://localhost:3000/bids?taskId=${task._id}`
         );
         const data = await res.json();
         setBidsCount(data.length);
@@ -45,7 +45,7 @@ const TaskDetails = () => {
     };
 
     try {
-      const res = await fetch('https://quick-lance-server.vercel.app/bids', {
+      const res = await fetch('http://localhost:3000/bids', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -93,25 +93,46 @@ const TaskDetails = () => {
 
         <div className="space-y-4 font-[Mulish] text-blue-800 text-base md:text-lg">
           <p>
-            <strong className='text-orange-600 font-bold font-[Susu]'>Title:</strong> {task.task}
+            <strong className="text-orange-600 font-bold font-[Susu]">
+              Title:
+            </strong>{' '}
+            {task.task}
           </p>
           <p>
-            <strong className='text-orange-600 font-bold font-[Susu]'>Category:</strong> {task.category}
+            <strong className="text-orange-600 font-bold font-[Susu]">
+              Category:
+            </strong>{' '}
+            {task.category}
           </p>
           <p>
-            <strong className='text-orange-600 font-bold font-[Susu]'>Deadline:</strong> {task.deadline}
+            <strong className="text-orange-600 font-bold font-[Susu]">
+              Deadline:
+            </strong>{' '}
+            {task.deadline}
           </p>
           <p>
-            <strong className='text-orange-600 font-bold font-[Susu]'>Budget:</strong> ${task.budget}
+            <strong className="text-orange-600 font-bold font-[Susu]">
+              Budget:
+            </strong>{' '}
+            ${task.budget}
           </p>
           <p>
-            <strong className='text-orange-600 font-bold font-[Susu]'>Description:</strong> {task.description}
+            <strong className="text-orange-600 font-bold font-[Susu]">
+              Description:
+            </strong>{' '}
+            {task.description}
           </p>
           <p>
-            <strong className='text-orange-600 font-bold font-[Susu]'>Status:</strong> {task.status || 'Open'}
+            <strong className="text-orange-600 font-bold font-[Susu]">
+              Status:
+            </strong>{' '}
+            {task.status || 'Open'}
           </p>
           <p>
-            <strong className='text-orange-600 font-bold font-[Susu]'>Posted By:</strong> {task.email}
+            <strong className="text-orange-600 font-bold font-[Susu]">
+              Posted By:
+            </strong>{' '}
+            {task.email}
           </p>
         </div>
 

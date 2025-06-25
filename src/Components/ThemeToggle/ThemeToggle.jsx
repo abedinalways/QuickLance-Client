@@ -22,7 +22,7 @@ const ThemeToggle = () => {
   };
 
   return (
-    <section className="md:relative flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden z-110">
+    <section className="flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden z-110">
       <button
         onClick={toggleTheme}
         aria-label={`switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
@@ -37,5 +37,4 @@ const ThemeToggle = () => {
     </section>
   );
 };
-
 export default ThemeToggle;

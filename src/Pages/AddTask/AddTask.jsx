@@ -11,7 +11,7 @@ const AddTask = () => {
     const newTask = Object.fromEntries(formData.entries());
     console.log(newTask);
     //send task to db
-    fetch('https://quick-lance-server.vercel.app/tasks', {
+    fetch('http://localhost:3000/tasks', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

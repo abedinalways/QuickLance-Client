@@ -33,7 +33,7 @@ const UpdateTask = () => {
   const handleUpdateTask = e => {
     e.preventDefault();
 
-    fetch(`https://quick-lance-server.vercel.app/allTasks/${loadedTask._id}`, {
+    fetch(`http://localhost:3000/allTasks/${loadedTask._id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

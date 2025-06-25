@@ -40,7 +40,7 @@ export default function Banner() {
     },
   ];
   return (
-    <div className="w-full md:h-[80vh] overflow-hidden">
+    <div className="w-full md:h-[80vh] overflow-hidden rounded-xl mt-4">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}

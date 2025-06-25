@@ -1,7 +1,7 @@
 import React, { use, useRef } from 'react';
 import { BiUser } from 'react-icons/bi';
 import { FcGoogle } from 'react-icons/fc';
-import { Link, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../Context/AuthContext';
 import toast, { Toaster } from 'react-hot-toast';
 import { sendPasswordResetEmail } from 'firebase/auth';
@@ -10,6 +10,8 @@ import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
   const emailRef = useRef();
+  const location = useLocation();
+  console.log(location);
   const { signInUser, googleSignIn } = use(AuthContext);
   const navigate = useNavigate();
   const handleLogin = e => {
