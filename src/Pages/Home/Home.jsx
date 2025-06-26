@@ -1,6 +1,6 @@
 import React from 'react';
 import Banner from '../../Components/Banner/Banner';
-import { useLoaderData } from 'react-router';
+import { Link, useLoaderData } from 'react-router';
 import TaskCard from '../../Components/TaskCard/TaskCard';
 import FreelancerGrid from '../../Components/Freelancers/FreelancerGrid';
 import TestimonialCarousel from '../../Components/Testimonial/TestimonialCarousel';
@@ -28,10 +28,13 @@ const Home = () => {
             <TaskCard key={taskData._id} taskData={taskData}></TaskCard>
           ))}
         </div>
+        <Link to="/browseTask" className="flex justify-center text-xl btn-link font-[suse] font-bold text-blue-800 dark:text-white">
+          Explore More Tasks
+        </Link>
       </div>
       <FreelancerGrid />
       <TestimonialCarousel />
-      <FreelancerStories/>
+      <FreelancerStories />
     </>
   );
 };
