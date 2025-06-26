@@ -11,6 +11,7 @@ import PrivateRoute from './PrivateRoute';
 import PostedTasks from '../Pages/PostedTasks/PostedTasks';
 import UpdateTask from '../Pages/UpdateTask/UpdateTask';
 import ErrorPage from '../Pages/ErrorPage/ErrorPage';
+import Dashboard from '../Components/Dashboard/Dashboard';
 
 const router = createBrowserRouter([
   {
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
             <UpdateTask />
           </PrivateRoute>
         ),
+      },
+      {
+        path: '/dashboard',
+        element:( <PrivateRoute><Dashboard/></PrivateRoute>),
       },
       {
         path: '/login',

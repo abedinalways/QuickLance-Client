@@ -10,59 +10,94 @@ const TaskDetails = () => {
   const { user } = useContext(AuthContext);
   const [hasBid, setHasBid] = useState(false);
   const [bidsCount, setBidsCount] = useState(0);
+  const [isLoadingBids, setIsLoadingBids] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchBids = async () => {
+      if (!user) {
+        setIsLoadingBids(false);
+        return;
+      }
+
       try {
+        const token = await user.getIdToken();
         const res = await fetch(
-          `http://localhost:3000/bids?taskId=${task._id}`
+          `http://localhost:3000/bids?taskId=${task._id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          }
         );
+
+        if (!res.ok) {
+          const errorData = await res.json();
+          throw new Error(
+            errorData.message || `HTTP error! Status: ${res.status}`
+          );
+        }
+
         const data = await res.json();
         setBidsCount(data.length);
-        const userAlreadyBid = data.find(bid => bid.userEmail === user?.email);
-        if (userAlreadyBid) setHasBid(true);
+        const userAlreadyBid = data.find(bid => bid.userEmail === user.email);
+        setHasBid(!!userAlreadyBid);
+        setIsLoadingBids(false);
       } catch (error) {
-        toast.error('Failed to load bid info');
+        console.error('Error fetching bids:', error);
+        toast.error(error.message || 'Failed to load bid info');
+        setIsLoadingBids(false);
       }
     };
 
     if (user?.email) {
       fetchBids();
+    } else {
+      setIsLoadingBids(false);
     }
-  }, [task._id, user?.email]);
+  }, [task._id, user]);
 
   const handleBid = async () => {
     if (hasBid) {
-      toast.error('You have already bid this task');
+      toast.error('You have already bid on this task');
       return;
     }
 
-    const bidInfo = {
-      taskId: task._id,
-      userEmail: user.email,
-      bidTime: new Date(),
-    };
+    if (!user) {
+      toast.error('You must be logged in to place a bid');
+      navigate('/login');
+      return;
+    }
 
     try {
+      const token = await user.getIdToken();
+      const bidInfo = {
+        taskId: task._id.toString(), // Ensure taskId is a string
+        userEmail: user.email,
+        bidTime: new Date().toISOString(),
+      };
+
       const res = await fetch('http://localhost:3000/bids', {
         method: 'POST',
         headers: {
+          Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(bidInfo),
       });
 
       const result = await res.json();
-      if (result.insertedId) {
+      if (res.ok && result.insertedId) {
         toast.success('You have successfully bid this task');
         setBidsCount(prev => prev + 1);
         setHasBid(true);
       } else {
-        toast.error('Failed to place bid');
+        throw new Error(result.message || 'Failed to place bid');
       }
     } catch (error) {
-      toast.error('Error placing bid');
+      console.error('Error placing bid:', error);
+      toast.error(error.message || 'Error placing bid');
     }
   };
 
@@ -139,16 +174,20 @@ const TaskDetails = () => {
         <div className="mt-8 flex flex-col items-center gap-4">
           <motion.button
             onClick={handleBid}
-            disabled={hasBid}
-            whileHover={!hasBid ? { scale: 1.05 } : {}}
+            disabled={hasBid || isLoadingBids}
+            whileHover={!(hasBid || isLoadingBids) ? { scale: 1.05 } : {}}
             whileTap={{ scale: 0.95 }}
             className={`px-8 py-2 rounded-full font-semibold transition-all duration-300 ${
-              hasBid
+              hasBid || isLoadingBids
                 ? 'bg-gray-400 cursor-not-allowed'
                 : 'bg-green-600 hover:bg-green-700 text-white shadow-md'
             }`}
           >
-            {hasBid ? 'Already Bid' : 'Place Bid'}
+            {isLoadingBids
+              ? 'Loading...'
+              : hasBid
+              ? 'Already Bid'
+              : 'Place Bid'}
           </motion.button>
 
           <motion.button

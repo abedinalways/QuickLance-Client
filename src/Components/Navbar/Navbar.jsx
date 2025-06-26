@@ -8,7 +8,8 @@ import { NavLink } from 'react-router';
 import logo from '../../assets/freelance (2).png';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../Context/AuthContext';
-import ThemeToggle from '../ThemeToggle/ThemeToggle'
+import ThemeToggle from '../ThemeToggle/ThemeToggle';
+import { MdDashboardCustomize } from 'react-icons/md';
 const Navbar = () => {
   const { user, signOutUser } = use(AuthContext);
 
@@ -100,6 +101,23 @@ const Navbar = () => {
           </li>
         </ul>
       </NavLink>
+      {user && (
+        <NavLink
+          to="/dashboard"
+          className={({ isActive }) =>
+            isActive ? 'text-orange-600 font-extrabold underline' : ''
+          }
+        >
+          <ul className="menu menu-horizontal">
+            <li className="list-none">
+              <span>
+                <MdDashboardCustomize />
+                Dashboard
+              </span>
+            </li>
+          </ul>
+        </NavLink>
+      )}
     </>
   );
 
