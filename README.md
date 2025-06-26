@@ -28,6 +28,7 @@ QuickLance is a freelance service platform where users can browse freelancers, a
 - 📱 Fully Responsive Design with modern UI/UX
 - ✨ Animated text and smooth scroll-based reveals
 - 🛠️ Add, edit, or delete your freelance listings
+---
 
 ## 📂 Project Structure
 QUICKLANCE-CLIENT/
@@ -57,6 +58,8 @@ QUICKLANCE-CLIENT/
 ├── tailwind.config.js # TailwindCSS config
 ├── vite.config.js # Vite configuration
 
+
+----
 ## 🔧 Getting Started
 
 ```bash
